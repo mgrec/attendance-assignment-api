@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="30">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+<style>
+.qr-code-content{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+</style>
+<body>
+{% block body %}{% endblock %}
+<div class="qr-code-content">
+    <img src="{{ qr_code_path(qr_code) }}" />
+</div>
+{% block javascripts %}{% endblock %}
+</body>
+</html>

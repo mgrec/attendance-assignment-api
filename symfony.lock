@@ -1,4 +1,7 @@
 {
+    "bacon/bacon-qr-code": {
+        "version": "1.0.3"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -56,8 +59,29 @@
     "doctrine/orm": {
         "version": "v2.6.1"
     },
+    "endroid/installer": {
+        "version": "1.0.3"
+    },
+    "endroid/qr-code": {
+        "version": "3.2.9"
+    },
+    "endroid/qr-code-bundle": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "b9fcbe18b537c63bf61d3c3be8116a00a85c8e2e"
+        }
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
+    },
+    "khanamiryan/qrcode-detector-decoder": {
+        "version": "1"
+    },
+    "myclabs/php-enum": {
+        "version": "1.5.2"
     },
     "nikic/php-parser": {
         "version": "v4.0.1"
@@ -149,6 +173,9 @@
     "symfony/http-kernel": {
         "version": "v4.0.8"
     },
+    "symfony/inflector": {
+        "version": "v4.0.8"
+    },
     "symfony/lts": {
         "version": "4-dev"
     },
@@ -160,6 +187,9 @@
             "version": "1.0",
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
+    },
+    "symfony/options-resolver": {
+        "version": "v4.0.8"
     },
     "symfony/orm-pack": {
         "version": "v1.0.5"
@@ -173,6 +203,9 @@
     "symfony/process": {
         "version": "v4.0.8"
     },
+    "symfony/property-access": {
+        "version": "v4.0.8"
+    },
     "symfony/routing": {
         "version": "4.0",
         "recipe": {
@@ -180,6 +213,18 @@
             "branch": "master",
             "version": "4.0",
             "ref": "cda8b550123383d25827705d05a42acf6819fe4e"
+        }
+    },
+    "symfony/twig-bridge": {
+        "version": "v4.0.8"
+    },
+    "symfony/twig-bundle": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "f75ac166398e107796ca94cc57fa1edaa06ec47f"
         }
     },
     "symfony/var-dumper": {
@@ -196,6 +241,9 @@
     },
     "symfony/yaml": {
         "version": "v4.0.8"
+    },
+    "twig/twig": {
+        "version": "v2.4.8"
     },
     "zendframework/zend-code": {
         "version": "3.3.0"
