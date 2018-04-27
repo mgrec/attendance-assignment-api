@@ -49,17 +49,42 @@ class indexController extends Controller
                 $token = $rtn->getToken();
             }
             $data = array(
-                'connection' => true,
                 'token' => $token
             );
         }else{
             $data = array(
-                'connection' => false,
                 'token' => null
             );
         }
-
         return $this->json($data);
     }
 
+    /**
+     * @param Req $request
+     * @Route("/refreshToken", methods={"POST"}, name="api_login")
+     */
+    public function refreshTokenAction(Req $request)
+    {
+        $token = $request->get('token');
+        $em             = $this->getDoctrine()->getManager();
+        $repoUser       = $em->getRepository(User::class);
+        $rtn            = $repoUser->findOneBy(array('Token' => $token));
+
+        if ($token == null){
+            $data = array('error' => 'Token is missing');
+        }elseif ($rtn == null){
+            $data = array('error' => 'Token not match');
+        }else{
+            $token = uniqid();
+            $rtn->setToken($token);
+            $em->persist($rtn);
+            $em->flush();
+
+            $data = array('token' => $token);
+        }
+
+
+
+        return $this->json($data);
+    }
 }
