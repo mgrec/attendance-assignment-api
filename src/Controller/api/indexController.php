@@ -100,13 +100,19 @@ class indexController extends Controller
         if ($isAuth == true) {
             $date = date('Y-m-d H:i:s');
             $event = $repoEvent->findNextEvent($date);
-            $data = array(
-                'name' => $event[0]->getName(),
-                'date' => $event[0]->getDate(),
-                'location' => $event[0]->getLocation()->getDescription()
-            );
-        }
 
+            if ($event != null){
+                $data = array(
+                    'name' => $event[0]->getName(),
+                    'date' => $event[0]->getDate(),
+                    'location' => $event[0]->getLocation()->getDescription()
+                );
+            }else{
+                $data = array(
+                    'error' => 'no event found'
+                );
+            }
+        }
         return $this->json($data);
     }
 

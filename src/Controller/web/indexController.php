@@ -46,8 +46,8 @@ class indexController extends Controller
         $repoLocation   = $em->getRepository(Location::class);
         $location       = $repoLocation->findById($id);
         $qrcode         = $location[0]->getQrCode();
+        $rtn            = $this->render('block/qrcode-block.html.twig', compact('qrcode'));
 
-        $rtn       = $this->render('block/qrcode-block.html.twig', compact('qrcode'));
         return $rtn;
     }
 }
