@@ -3,6 +3,7 @@
 namespace App\Controller\web;
 
 use App\Entity\Event;
+use App\Entity\Location;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request as Req;
@@ -24,12 +25,29 @@ class indexController extends Controller
     }
 
     /**
-     * @Route("/", methods={"GET"}, name="web_qr_code")
+     * @Route("/", methods={"GET"}, name="display_qr_code")
      */
     public function indexAction()
     {
-        $qr_code = uniqid();
+        $em             = $this->getDoctrine()->getManager();
+        $repoLocation   = $em->getRepository(Location::class);
+        $locations      = $repoLocation->findAll();
 
-        return $this->render('index.html.twig', compact('qr_code'));
+        return $this->render('index.html.twig', compact("locations"));
+    }
+
+    /**
+     * @Route("/getQRcode", methods={"POST"}, name="generate_qr_code")
+     */
+    public function getQRcodeAction(Req $request)
+    {
+        $id             = $request->get('id');
+        $em             = $this->getDoctrine()->getManager();
+        $repoLocation   = $em->getRepository(Location::class);
+        $location       = $repoLocation->findById($id);
+        $qrcode         = $location[0]->getQrCode();
+
+        $rtn       = $this->render('block/qrcode-block.html.twig', compact('qrcode'));
+        return $rtn;
     }
 }

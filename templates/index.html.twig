@@ -5,6 +5,10 @@
     <meta http-equiv="refresh" content="30">
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
 </head>
 <style>
 .qr-code-content{
@@ -16,9 +20,35 @@
 </style>
 <body>
 {% block body %}{% endblock %}
+<select class="select-location" name="" id="">
+    {% for location in locations %}
+    <option value="{{ location.id }}">{{ location.description }}</option>
+    {% endfor %}
+</select>
 <div class="qr-code-content">
-    <img src="{{ qr_code_path(qr_code) }}" />
+
 </div>
 {% block javascripts %}{% endblock %}
 </body>
+<script>
+    var _el = $( ".qr-code-content" );
+
+    $('.select-location').change(function () {
+        $.ajax({
+            url: "/getQRcode",
+            data: {
+                id: $('.select-location').val()
+            },
+            method: "post",
+            error: function (data) {
+            },
+            success: function (data) {
+                _el.empty();
+                _el.append(data);
+            }
+        });
+    })
+
+</script>
 </html>
+
