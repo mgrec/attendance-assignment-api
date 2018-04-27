@@ -49,12 +49,12 @@ class Event
         return $this;
     }
 
-    public function getIdLocation(): ?int
+    public function getLocation(): ?Location
     {
         return $this->location;
     }
 
-    public function setIdLocation(int $location): self
+    public function setLocation(int $location): self
     {
         $this->location = $location;
 

@@ -47,4 +47,14 @@ class EventRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findNextEvent($date)
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.Date > :date')
+            ->setParameter('date', $date)
+            ->orderBy('e.id', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+    }
 }
